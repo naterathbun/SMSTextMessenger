@@ -363,3 +363,4 @@ MigrationBackup/
 FodyWeavers.xsd
 /SMSTextMessenger/Config/MessengerConfigurationSection.config
 /SMSTextMessenger/App.config
+/SMSTextMessenger/Models/App.config
