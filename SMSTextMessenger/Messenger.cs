@@ -12,19 +12,22 @@ namespace SMSTextMessenger
 {
     public class Messenger
     {
+        public readonly string MYNUMBER;
+
         public PhoneBook PhoneBook { get; set; }
         public Messages Messages { get; set; }
 
         public Messenger()
         {
-            TwilioClient.Init(ConfigurationManager.AppSettings["accountsid"], ConfigurationManager.AppSettings["authtoken"]);
+            var config = ConfigurationManager.AppSettings;
+            MYNUMBER = config["mynumber"];
+            
+            TwilioClient.Init(config["accountsid"], config["authtoken"]);
 
             // create new Messages
             // read text file for messages, add to Messages
             // create new PhoneBook
             // read text file for contacts, add to PhoneBook
-
-
         }
 
 
@@ -60,12 +63,12 @@ namespace SMSTextMessenger
 
 
         // Twilio
-        public void SendMessage(Contact contact)
+        public void SendMessage()
         {            
             var message = MessageResource.Create(
                 body: "nate test",
                 from: new Twilio.Types.PhoneNumber(MYNUMBER),
-                to: new Twilio.Types.PhoneNumber("+1" + contact.Number)
+                to: new Twilio.Types.PhoneNumber("+1")
             );
         }
     }
