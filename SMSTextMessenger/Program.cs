@@ -6,9 +6,11 @@ namespace SMSTextMessenger
     {
         static void Main(string[] args)
         {
-            
+            var messenger = new Messenger();
 
+            messenger.SendMessage();
 
+            Console.ReadLine();
 
 
         }

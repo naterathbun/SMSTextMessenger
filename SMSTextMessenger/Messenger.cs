@@ -1,19 +1,23 @@
-﻿using SMSTextMessenger.SMSTextMessenger.Models;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using SMSTextMessenger.SMSTextMessenger.Models;
+using Twilio;
+using Twilio.Rest.Api.V2010.Account;
 
-namespace SMSTextMessenger.SMSTextMessenger
+namespace SMSTextMessenger
 {
-    public class SMSTextMessenger
+    public class Messenger
     {
         public PhoneBook PhoneBook { get; set; }
         public Messages Messages { get; set; }
 
-        public SMSTextMessenger()
+        public Messenger()
         {
+            TwilioClient.Init(ACCOUNTSID, AUTHTOKEN);
+
             // create new Messages
             // read text file for messages, add to Messages
             // create new PhoneBook
@@ -53,9 +57,13 @@ namespace SMSTextMessenger.SMSTextMessenger
 
 
         // Twilio
-        private void SendMessage(string messageName)
-        {
-            
+        public void SendMessage(Contact contact)
+        {            
+            var message = MessageResource.Create(
+                body: "nate test",
+                from: new Twilio.Types.PhoneNumber(MYNUMBER),
+                to: new Twilio.Types.PhoneNumber("+1" + contact.Number)
+            );
         }
     }
 }
