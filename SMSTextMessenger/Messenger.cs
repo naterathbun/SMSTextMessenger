@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Configuration;
 using SMSTextMessenger.SMSTextMessenger.Models;
 using Twilio;
 using Twilio.Rest.Api.V2010.Account;
@@ -16,12 +17,14 @@ namespace SMSTextMessenger
 
         public Messenger()
         {
-            TwilioClient.Init(ACCOUNTSID, AUTHTOKEN);
+            TwilioClient.Init(ConfigurationManager.AppSettings["accountsid"], ConfigurationManager.AppSettings["authtoken"]);
 
             // create new Messages
             // read text file for messages, add to Messages
             // create new PhoneBook
             // read text file for contacts, add to PhoneBook
+
+
         }
 
 
